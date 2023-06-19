@@ -6,8 +6,8 @@ let gameOver = false;
 let foodX, foodY;
 let snakeX = 5,
   snakeY = 5;
-let moveX = 0,
-  moveY = 0;
+let velocityX = 0,
+  velocityY = 0;
 let snakeBody = [];
 let setIntervalId;
 let score = 0;
@@ -28,20 +28,20 @@ const handleGameOver = () => {
   alert("Game Over! Press OK to replay...");
   location.reload();
 };
-//Chuyển các hướng bằng các phím và không đi ngược được
-const changeDirection = (event) => {
-  if (event.key === "ArrowUp" && moveY != 1) {
-    moveX = 0;
-    moveY = -1;
-  } else if (event.key === "ArrowDown" && moveY != -1) {
-    moveX = 0;
-    moveY = 1;
-  } else if (event.key === "ArrowLeft" && moveX != 1) {
-    moveX = -1;
-    moveY = 0;
-  } else if (event.key === "ArrowRight" && moveX != -1) {
-    moveX = 1;
-    moveY = 0;
+//Chuyển các hướng bằng các phím
+const changeDirection = (e) => {
+  if (e.key === "ArrowUp" && velocityY != 1) {
+    velocityX = 0;
+    velocityY = -1;
+  } else if (e.key === "ArrowDown" && velocityY != -1) {
+    velocityX = 0;
+    velocityY = 1;
+  } else if (e.key === "ArrowLeft" && velocityX != 1) {
+    velocityX = -1;
+    velocityY = 0;
+  } else if (e.key === "ArrowRight" && velocityX != -1) {
+    velocityX = 1;
+    velocityY = 0;
   }
 };
 // Khởi tạo game
@@ -59,8 +59,8 @@ const initGame = () => {
     scoreElement.innerText = `Score: ${score}`;
     highScoreElement.innerText = `High Score: ${highScore}`;
   }
-  snakeX += moveX;
-  snakeY += moveY;
+  snakeX += velocityX;
+  snakeY += velocityY;
 
   for (let i = snakeBody.length - 1; i > 0; i--) {
     snakeBody[i] = snakeBody[i - 1];

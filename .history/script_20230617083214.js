@@ -28,7 +28,7 @@ const handleGameOver = () => {
   alert("Game Over! Press OK to replay...");
   location.reload();
 };
-//Chuyển các hướng bằng các phím và không đi ngược được
+//Chuyển các hướng bằng các phím
 const changeDirection = (event) => {
   if (event.key === "ArrowUp" && moveY != 1) {
     moveX = 0;

@@ -28,19 +28,19 @@ const handleGameOver = () => {
   alert("Game Over! Press OK to replay...");
   location.reload();
 };
-//Chuyển các hướng bằng các phím và không đi ngược được
+//Chuyển các hướng bằng các phím
 const changeDirection = (event) => {
   if (event.key === "ArrowUp" && moveY != 1) {
-    moveX = 0;
+    velocityX = 0;
     moveY = -1;
   } else if (event.key === "ArrowDown" && moveY != -1) {
-    moveX = 0;
+    velocityX = 0;
     moveY = 1;
-  } else if (event.key === "ArrowLeft" && moveX != 1) {
-    moveX = -1;
+  } else if (event.key === "ArrowLeft" && velocityX != 1) {
+    velocityX = -1;
     moveY = 0;
-  } else if (event.key === "ArrowRight" && moveX != -1) {
-    moveX = 1;
+  } else if (event.key === "ArrowRight" && velocityX != -1) {
+    velocityX = 1;
     moveY = 0;
   }
 };
@@ -59,8 +59,8 @@ const initGame = () => {
     scoreElement.innerText = `Score: ${score}`;
     highScoreElement.innerText = `High Score: ${highScore}`;
   }
-  snakeX += moveX;
-  snakeY += moveY;
+  snakeX += velocityX;
+  snakeY += velocityY;
 
   for (let i = snakeBody.length - 1; i > 0; i--) {
     snakeBody[i] = snakeBody[i - 1];
